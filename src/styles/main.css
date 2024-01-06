@@ -1,0 +1,159 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #e878ff;
+    user-select: none;
+}
+
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    background: linear-gradient(
+        325deg,
+        #03001e 0%,
+        #7303c0 30%,
+        #ec38bc 70%,
+        #fdeff9 100%
+    );
+    padding: 40px 60px;
+    border-radius: 1rem;
+}
+
+h2 {
+    font-size: 3em;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-shadow: -1px -1px 3px black;
+}
+
+.reset {
+    padding: 15px 20px;
+    width: 100%;
+    color: #000;
+    background-color: #f5e0ff;
+    border: none;
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.reset:focus {
+    color: #ec38bc;
+    background-color: #262809;
+}
+
+.game {
+    width: 430px;
+    height: 430px;
+    display: flex;
+    flex-wrap: wrap; /* toda vez q um elemento ultrapassar o espaço determinado 
+    ele quebra e vai pra linha de baixo */
+    gap: 10px;
+    transform-style: preserve-3d;
+    perspective: 500px;
+}
+
+.item {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+
+
+    font-size: 3em;
+    transform: rotateY(180deg);
+    transition: 0.25;
+}
+
+.item::after { /* Cobrindo a crata com um cinza para esconder os emojis */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #404040;
+    transition: 0.25s;
+    transform: rotateY(0deg);
+    backface-visibility: hidden;
+}
+
+.item.boxOpen {
+    transform: rotateY(0deg);
+}
+
+.boxOpen::after,
+.boxMatch::after { /* Girando a carta */
+    transform: rotateY(180deg);
+}
+
+/* tablets */
+@media screen and (min-width: 481px) and (max-width: 769px) {
+    .container {
+        width: 400px;
+        height: 500px;
+        gap: 15px;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    .game {
+        width: 380px;
+        height: 380px;
+        padding-left: 15px;
+    }
+
+    .item {
+        height: 80px;
+        width: 80px;
+    }
+
+    .reset {
+        width: 70%;
+        padding: 5px 5px;
+    }
+
+}
+
+/* dispositivos moveis min 320px */
+@media screen and (max-width: 480px) {
+    .container {
+        width: 300px;
+        height: 500px;
+        gap: 30px;
+        padding: 20px 20px;
+    }
+
+    h2 {
+        font-size: 1.8em;
+    }
+
+    .game {
+        width: 280px;
+        height: 280px;
+        padding-left: 15px;
+    }
+
+    .item {
+        height: 55px;
+        width: 55px;
+    }
+
+    .reset {
+        width: 70%;
+        padding: 5px 5px;
+        border-radius: 0.5rem;
+        font-size: 1.4rem;
+    }
+}
